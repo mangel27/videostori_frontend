@@ -13,7 +13,7 @@ const BlogPage = ({ blogData }) => {
 export async function getStaticProps() {
   const blogDataRes = await fetchAPI("/categories", {
     filters: {
-      slug: "blog",
+      slug: "blogs",
     },
     sort: "priority:ASC",
     populate: {
