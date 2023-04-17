@@ -9,6 +9,7 @@ const Home = ({ homepage }) => {
       <InteractSection />
       <FeatureSection />
       <Carousel slideData={homepage.carouselArticles} />
+      {/* <FollowUs /> */}
     </>
   )
 }

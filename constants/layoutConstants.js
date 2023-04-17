@@ -11,6 +11,7 @@ import {
   FaCcApplePay,
   FaGamepad,
 } from "react-icons/fa"
+import { FiFacebook, FiTwitter, FiInstagram, FiLinkedin } from "react-icons/fi"
 
 export const HOTSPOTTEXT = [
   {
@@ -285,5 +286,28 @@ export const REPORTANALYTICS = [
     title: "Video Views Reports",
     description:
       "With Videostori View reports, you can filter on specific video or group of videos on a specific date range and get open rates, percentage of video watched, Click through rates, time of the day, OS used etc. You can analyze these view reports and find trends as well as gaps in your viewer engagement.",
+  },
+]
+
+export const FOLLOW_DATA = [
+  {
+    title: "Facebook",
+    icon: FiFacebook,
+    link: "https://www.facebook.com/videostori2",
+  },
+  {
+    title: "Twitter",
+    icon: FiTwitter,
+    link: "https://twitter.com/videostori2",
+  },
+  {
+    title: "Instagram",
+    icon: FiInstagram,
+    link: "https://www.instagram.com/videostori2/",
+  },
+  {
+    title: "Linkedin",
+    icon: FiLinkedin,
+    link: "https://www.linkedin.com/company/videostori/",
   },
 ]

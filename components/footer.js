@@ -19,6 +19,7 @@ import { MdPhoneEnabled } from "react-icons/md"
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import { FiFacebook } from "react-icons/fi"
 import { useEffect, useState } from "react"
+import FollowUs from "./follow"
 
 const ListHeader = ({ children }) => {
   return (
@@ -112,6 +113,7 @@ export default function Footer({ logo }) {
         mt={"3em"}
         pos="relative"
       >
+        <FollowUs />
         <Container
           as={Stack}
           mx="0px!important"
