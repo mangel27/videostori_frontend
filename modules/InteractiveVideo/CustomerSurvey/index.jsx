@@ -6,7 +6,6 @@ import { customerText } from "../../../constants/layoutConstants"
 import { PageContainer } from "../../../patterns/Layouts/PageContainer"
 
 const CustomerSurvey = ({ articles }) => {
-  console.log(articles)
   const breadcrumb = [
     { text: "Home", link: "/" },
     { text: "Interactive Video", link: "/interactive-video" },

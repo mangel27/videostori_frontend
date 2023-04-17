@@ -70,7 +70,7 @@ export default function Carousel({ slideData }) {
     <Box
       className="hidden"
       position={"relative"}
-      minH={"100vh"}
+      minH={["auto", "100vh"]}
       width={["100%", "85%"]}
       m="0 auto"
       overflow={"hidden"}
@@ -106,10 +106,10 @@ export default function Carousel({ slideData }) {
       </IconButton>
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {slideData.map((item, index) => (
-          <Box key={index} w="100%" py={20}>
+          <Box key={index} w="100%" py={[5, 20]}>
             <Flex
               w="100%"
-              h="400px"
+              h={["auto", "400px"]}
               direction={["column-reverse", "row"]}
               justifyContent="space-evenly"
             >
@@ -133,9 +133,9 @@ export default function Carousel({ slideData }) {
                 </Flex>
               </Flex>
               <VideoPlayer
-                p={10}
+                p={[3, 10]}
                 width={["90%", "45%"]}
-                height={["70%", "100%"]}
+                height={["200px", "100%"]}
                 alignSelf={["center", "normal"]}
                 videodata={{
                   thumbnail: getStrapiMedia(item.thumbnail),

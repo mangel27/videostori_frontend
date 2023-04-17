@@ -12,10 +12,13 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react"
+import React from "react"
 import NextImage from "../components/image"
+import { fetchAPI } from "../lib/api"
 import { MdPhoneEnabled } from "react-icons/md"
 import { FaFacebookF, FaTwitter, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import { FiFacebook } from "react-icons/fi"
+import { useEffect, useState } from "react"
 
 const ListHeader = ({ children }) => {
   return (
@@ -41,54 +44,82 @@ const footerIcons = [
 ]
 
 export default function Footer({ logo }) {
-  return (
-    <Box
-      bg={useColorModeValue("#1b1f2b", "gray.900")}
-      color={useColorModeValue("gray.400", "gray.200")}
-      mt={[52, 32]}
-      pos="relative"
-    >
-      <Flex
-        direction={["column", "row"]}
-        position={"absolute"}
-        //bottom={["0", "610px"]}
-        top={["-200px", "-100px"]}
-        left="2%"
-        w="96%"
-        h={["40vh", "26vh"]}
-        alignItems={["flex-start", "center"]}
-        justifyContent={["space-evenly", "space-between"]}
-        px={[10, "100px"]}
-        zIndex={1}
-        bg="#303441"
-        mb={8}
-      >
-        <Flex direction={"column"} color="#1b1f2e" fontWeight={"bold"}>
-          <Text py={4}>Need Any Consultations ?</Text>
-          <Text fontSize={["xl", "4xl"]}>
-            We’re Ready to Growth IT Business
-          </Text>
-        </Flex>
-        <Flex>
-          <Button mx="4" bg="#1b1f2e" color={"white"} _hover={{ bg: "red" }}>
-            Get Free Quote
-          </Button>
-          <Icon
-            cursor={"pointer"}
-            borderRadius="50%"
-            bg="white"
-            as={MdPhoneEnabled}
-            boxSize={8}
-            fill="red"
-          />
-        </Flex>
-      </Flex>
-      <Container as={Stack} maxW={"90%"} py={"130px"}>
-        <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "3fr 2fr 2fr 2fr" }}
-          spacing={8}
+  const [sectionData, setSectionData] = useState([])
+  const [linkData, setLinkData] = useState([])
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    fetchData()
+  }, [])
+  const fetchData = async () => {
+    setLoading(false)
+
+    const { data } = await fetchAPI("/footers", {
+      sort: "priority:ASC",
+      populate: {
+        categories: {
+          populate: "*",
+        },
+      },
+    })
+
+    if (data && data.length > 0) {
+      const [sectionData, linkData] = data.reduce(
+        (acc, item) => {
+          if (item.attributes.type === "section") {
+            acc[0].push(item)
+          } else if (item.attributes.type === "links") {
+            acc[1].push(item)
+          }
+          return acc
+        },
+        [[], []]
+      )
+      setSectionData(sectionData)
+      setLinkData(linkData)
+      setLoading(false)
+    }
+  }
+  // eslint-disable-next-line react/display-name
+  const Section = React.memo(({ section }) => (
+    <Stack align={"flex-start"} spacing={[5, 8]}>
+      <Text fontSize={"xl"} color="white" fontWeight="bold">
+        {section.attributes.sectionName}
+      </Text>
+      {section.attributes.categories?.data?.map((category) => (
+        <Text
+          as={Link}
+          fontSize={"sm"}
+          fontWeight={400}
+          key={`${category.id}-${category.attributes.name}`}
+          href={
+            section.attributes.refUrl
+              ? section.attributes.refUrl + category.attributes.slug
+              : category.attributes.slug
+          }
         >
-          <Stack spacing={14} display="flex" justifyContent="center">
+          {category.attributes.name}
+        </Text>
+      ))}
+    </Stack>
+  ))
+
+  return (
+    !loading && (
+      <Box
+        bg={"gray.900"}
+        w="100%"
+        color={"gray.200"}
+        mt={"3em"}
+        pos="relative"
+      >
+        <Container
+          as={Stack}
+          mx="0px!important"
+          maxW="100%"
+          px="3em"
+          py={"5em"}
+        >
+          <SimpleGrid w="100%" columns={[1, 5]} spacing={8}>
             <Box
               height="65px"
               mx={["auto", "0px"]}
@@ -100,81 +131,79 @@ export default function Footer({ logo }) {
             >
               <NextImage image={logo} />
             </Box>
-            <Text fontSize={"sm"} w={["100%", "65%"]}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accntiumc doloremque laudantium totam
-            </Text>
-          </Stack>
-          <Stack align={"flex-start"} spacing={[5, 8]}>
-            <Text fontSize={"2xl"} color="white" fontWeight="bold">
-              Services
-            </Text>
-            <Link href={"#"}>Product Design</Link>
-            <Link href={"#"}>Design & Development</Link>
-            <Link href={"#"}>UX/UI Strategy</Link>
-            <Link href={"#"}>Search Engine</Link>
-            <Link href={"#"}>IT Consulting</Link>
-            <Link href={"#"}>Business Analysis</Link>
-          </Stack>
-          <Stack align={"flex-start"} spacing={8}>
-            <Text fontSize={"2xl"} color="white" fontWeight="bold">
-              Support
-            </Text>
-            <Link href={"#"}>Start Here</Link>
-            <Link href={"#"}>Style guide</Link>
-            <Link href={"#"}>About Company</Link>
-            <Link href={"#"}>Password Protected</Link>
-            <Link href={"#"}>Licenses</Link>
-            <Link href={"#"}>Changelog</Link>
-          </Stack>
-          <Stack align={"flex-start"} spacing={8}>
-            <Text fontSize={"2xl"} color="white" fontWeight="bold">
-              Newsletter
-            </Text>
-            <Text>
-              Sed perspiciatis unde omnste natus error voluptatem accusante.
-            </Text>
-            <Stack direction={"row"} py={6}>
-              <Input size={"xs"} variant="flushed" mr={6} />
-              <Button
-                colorScheme="gray"
-                px={6}
-                borderRadius="0"
-                _hover={{
-                  bg: "#1b1f2e",
-                }}
-              >
-                Submit
-              </Button>
-            </Stack>
-            <Link href={"#"}>Follow Us</Link>
-            <Flex>
-              {footerIcons.map((icon, index) => {
+            {sectionData?.map((section) => (
+              <Section
+                key={`${section.id}-${section.attributes.sectionName}`}
+                section={section}
+              />
+            ))}
+
+            {/* {sectionData &&
+              sectionData.length > 0 &&
+              sectionData.map((section, index) => {
                 return (
-                  <Icon
-                    key={index + "icon"}
-                    cursor={"pointer"}
-                    as={icon.item}
-                    mr={4}
-                    boxSize={5}
-                    fill="gray.300"
-                    _hover={{ fill: "red" }}
-                  />
+                  <Stack
+                    key={index + section.id}
+                    align={"flex-start"}
+                    spacing={[5, 8]}
+                  >
+                    <Text fontSize={"xl"} color="white" fontWeight="bold">
+                      {section.attributes.sectionName}
+                    </Text>
+                    {section.attributes.categories?.data &&
+                      section.attributes.categories.data.length > 0 &&
+                      section.attributes.categories.data.map(
+                        (category, index) => {
+                          return (
+                            <Text
+                              as={Link}
+                              fontSize={"sm"}
+                              fontWeight={400}
+                              key={index + category.attributes.name}
+                              href={
+                                section.attributes.refUrl
+                                  ? section.attributes.refUrl +
+                                    category.attributes.slug
+                                  : category.attributes.slug
+                              }
+                            >
+                              {category.attributes.name}
+                            </Text>
+                          )
+                        }
+                      )}
+                  </Stack>
+                )
+              })} */}
+          </SimpleGrid>
+        </Container>
+        <Flex bg="#0f1425" justifyContent={["center", "flex-end"]}>
+          <Flex
+            justifyContent={["flex-start", "space-around"]}
+            flexWrap={"wrap"}
+            p={5}
+            // h="10vh"
+          >
+            {linkData &&
+              linkData.length > 0 &&
+              linkData.map((link, index) => {
+                return (
+                  <Text
+                    key={index + link.attributes.sectionName}
+                    mx="2em"
+                    my="0.5em"
+                    as={Link}
+                    fontSize={"sm"}
+                    fontWeight={400}
+                    href={link.attributes.slug}
+                  >
+                    {link.attributes.sectionName}
+                  </Text>
                 )
               })}
-            </Flex>
-          </Stack>
-        </SimpleGrid>
-      </Container>
-      <Box
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        bg="#0f1425"
-        h="10vh"
-      >
-        <Text color="gray.500">Copyright © 2022. All rights reserved.</Text>
+          </Flex>
+        </Flex>
       </Box>
-    </Box>
+    )
   )
 }
