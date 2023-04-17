@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>http://13.232.47.72:3000</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/blogs</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/features/hotspots-video</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/features/reports-analytics</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/features/switch-timelines-video</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/features/video-distribution</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video/app-acquisition-videos</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video/customer-survey-videos</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video/lead-generation-videos</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video/personalized-videos</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>http://13.232.47.72:3000/interactive-video/shoppable-videos</loc><lastmod>2023-04-17T07:13:02.600Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>
